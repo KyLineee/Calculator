@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(bindingClass.root)
 
         bindingClass.b1.setOnClickListener {
+            bindingClass.tvResult.text = ""
             var str = bindingClass.edText1.text.toString()
             var str1 : String = ""
             var result = 0
@@ -25,64 +26,32 @@ class MainActivity : AppCompatActivity() {
             {
                 if(str[i]=='*')
                 {
-                    if(count == 0)
-                    {
-
-                        str += "-+"
-                        var end = min(min(str.indexOf('+',i+1).takeIf { it != -1 } ?: 1000,str.indexOf('-',i+1).takeIf { it != -1 } ?: 1000),min(str.indexOf('*',i+1).takeIf { it != -1 } ?: 1000,str.indexOf('/',i+1).takeIf { it != -1 } ?: 1000))
-                        str1 = str.substring(0, end)
-                        result = Multiplication(str1)
-                        str = str.replaceFirst(str1,result.toString())
-                        str = str.dropLast(2)
-                        i = 0
-                    }
-                    if(count != 0)
-                    {
-                        str += "-+"
-                        var start = max(max(str.lastIndexOf('+',i-1),str.lastIndexOf('-',i-1)),max(str.lastIndexOf('*',i-1),str.lastIndexOf('/',i-1)))
-                        var end = min(min(str.indexOf('+',i+1).takeIf { it != -1 } ?: 1000,str.indexOf('-',i+1).takeIf { it != -1 } ?: 1000),min(str.indexOf('*',i+1).takeIf { it != -1 } ?: 1000,str.indexOf('/',i+1).takeIf { it != -1 } ?: 1000))
-                        str1 = str.substring(start+1, end)
-                        result = Multiplication(str1)
-                        str = str.replaceFirst(str1,result.toString())
-                        str = str.dropLast(2)
-                        i = 0
-                    }
-
-                    count++
+                    str += "+"
+                    var start = Start(str,i)
+                    var end = End(str,i)
+                    str1 = str.substring(start+1, end)
+                    result = Multiplication(str1)
+                    str = str.replaceFirst(str1,result.toString())
+                    str = str.dropLast(1)
+                    i = 0
                 }
 
                 if(str[i]=='/')
                 {
-                    if(count == 0)
-                    {
-                        str += "-+"
-                        var end = min(min(str.indexOf('+',i+1).takeIf { it != -1 } ?: 1000,str.indexOf('-',i+1).takeIf { it != -1 } ?: 1000),min(str.indexOf('*',i+1).takeIf { it != -1 } ?: 1000,str.indexOf('/',i+1).takeIf { it != -1 } ?: 1000))
-                        str1 = str.substring(0, end)
-                        result = Division(str1)
-                        str = str.replaceFirst(str1,result.toString())
-                        str = str.dropLast(2)
-                        i = 0
-                    }
-                    if(count != 0)
-                    {
-                        str += "-+"
-                        var start = max(max(str.lastIndexOf('+',i-1),str.lastIndexOf('-',i-1)),max(str.lastIndexOf('*',i-1),str.lastIndexOf('/',i-1)))
-                        var end = min(min(str.indexOf('+',i+1).takeIf { it != -1 } ?: 1000,str.indexOf('-',i+1).takeIf { it != -1 } ?: 1000),min(str.indexOf('*',i+1).takeIf { it != -1 } ?: 1000,str.indexOf('/',i+1).takeIf { it != -1 } ?: 1000))
-                        str1 = str.substring(start+1, end)
-                        result = Division(str1)
-                        str = str.replaceFirst(str1,result.toString())
-                        str = str.dropLast(2)
-                        i = 0
-                    }
-
-                    count++
+                    str += "+"
+                    var start = Start(str,i)
+                    var end = End(str,i)
+                    str1 = str.substring(start+1, end)
+                    result = Division(str1)
+                    str = str.replaceFirst(str1,result.toString())
+                    str = str.dropLast(1)
+                    i = 0
                 }
 
                 i++
             }
 
             i = 0
-            count = 0
             result = 0
 
             while (i <str.length-1)
@@ -91,21 +60,21 @@ class MainActivity : AppCompatActivity() {
                 {
                     if(count == 0)
                     {
-                        str += "-+"
-                        var end = min(min(str.indexOf('+',i+1).takeIf { it != -1 } ?: 1000,str.indexOf('-',i+1).takeIf { it != -1 } ?: 1000),min(str.indexOf('*',i+1).takeIf { it != -1 } ?: 1000,str.indexOf('/',i+1).takeIf { it != -1 } ?: 1000))
-                        str1 = str.substring(0, min(str.indexOf('+',i+1),str.indexOf('-',i+1)) )
+                        str += "+"
+                        var end = End(str,i)
+                        str1 = str.substring(0,end)
                         result += Sum(str1)
-                        str = str.dropLast(2)
+                        str = str.dropLast(1)
                     }
                     if(count != 0)
                     {
 
-                        str += "-+"
-                        str1 = str.substring(i+1)
-                        var end = min(min(str1.indexOf('+').takeIf { it != -1 } ?: 1000,str1.indexOf('-').takeIf { it != -1 } ?: 1000),min(str1.indexOf('*').takeIf { it != -1 } ?: 1000,str1.indexOf('/').takeIf { it != -1 } ?: 1000))
-                        str1 = str1.substring(0, end)
+                        str += "+"
+                        var start = Start(str,i+1)
+                        var end = End(str,i)
+                        str1 = str.substring(start, end)
                         result += Summ(str1)
-                        str = str.dropLast(2)
+                        str = str.dropLast(1)
                     }
                     count++
                 }
@@ -114,19 +83,20 @@ class MainActivity : AppCompatActivity() {
                 {
                     if(count == 0)
                     {
-                        str += "+-"
-                        str1 = str.substring(0, min(str.indexOf('-',i+1),str.indexOf('+',i+1)) )
+                        str += "+"
+                        var end = End(str,i)
+                        str1 = str.substring(0,end)
                         result += Minus(str1)
-                        str = str.dropLast(2)
+                        str = str.dropLast(1)
                     }
                     if(count != 0)
                     {
-                        str += "+-"
-                        str1 = str.substring(i+1)
-                        var end = min(min(str1.indexOf('+').takeIf { it != -1 } ?: 1000,str1.indexOf('-').takeIf { it != -1 } ?: 1000),min(str1.indexOf('*').takeIf { it != -1 } ?: 1000,str1.indexOf('/').takeIf { it != -1 } ?: 1000))
-                        str1 = str1.substring(0, end)
+                        str += "+"
+                        var start = Start(str,i+1)
+                        var end = End(str,i)
+                        str1 = str.substring(start, end)
                         result += Minuss(str1)
-                        str = str.dropLast(2)
+                        str = str.dropLast(1)
                     }
                     count++
                 }
@@ -139,7 +109,11 @@ class MainActivity : AppCompatActivity() {
                 result = str.toInt()
             }
 
-            bindingClass.tvResult.text = "Результат: $result"
+            if (bindingClass.tvResult.text != "Ошибка")
+            {
+                bindingClass.tvResult.text = "Результат: $result"
+            }
+
         }
 
     }
@@ -173,8 +147,7 @@ class MainActivity : AppCompatActivity() {
 
     fun Minuss(str1: String): Int
     {
-        var sum = 0
-        sum -= str1.toInt()
+        var sum = str1.toInt()
 
         return sum
     }
@@ -192,9 +165,30 @@ class MainActivity : AppCompatActivity() {
     {
         var sum = 0
         val arr = str1.split('/')
-        sum = arr[0].toInt() / arr[1].toInt()
+        try
+        {
+            sum = arr[0].toInt() / arr[1].toInt()
+        }
+        catch (e: ArithmeticException)
+        {
+            bindingClass.tvResult.text = "Ошибка"
+        }
 
         return sum
+    }
+
+    fun Start(str: String, i:Int): Int
+    {
+        var start = max(max(str.lastIndexOf('+',i-1),str.lastIndexOf('-',i-1)),max(str.lastIndexOf('*',i-1),str.lastIndexOf('/',i-1)))
+
+        return start
+    }
+
+    fun End(str: String, i:Int): Int
+    {
+        var end = min(min(str.indexOf('+',i+1).takeIf { it != -1 } ?: 1000,str.indexOf('-',i+1).takeIf { it != -1 } ?: 1000),min(str.indexOf('*',i+1).takeIf { it != -1 } ?: 1000,str.indexOf('/',i+1).takeIf { it != -1 } ?: 1000))
+
+        return end
     }
 
 }
