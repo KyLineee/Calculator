@@ -14,9 +14,64 @@ class MainActivity : AppCompatActivity() {
         bindingClass = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bindingClass.root)
 
+        bindingClass.b0.setOnClickListener {
+            bindingClass.textV.text = bindingClass.textV.text.toString() + "0"
+        }
         bindingClass.b1.setOnClickListener {
+            bindingClass.textV.text = bindingClass.textV.text.toString() + "1"
+        }
+        bindingClass.b2.setOnClickListener {
+            bindingClass.textV.text = bindingClass.textV.text.toString() + "2"
+        }
+        bindingClass.b3.setOnClickListener {
+            bindingClass.textV.text = bindingClass.textV.text.toString() + "3"
+        }
+        bindingClass.b4.setOnClickListener {
+            bindingClass.textV.text = bindingClass.textV.text.toString() + "4"
+        }
+        bindingClass.b5.setOnClickListener {
+            bindingClass.textV.text = bindingClass.textV.text.toString() + "5"
+        }
+        bindingClass.b6.setOnClickListener {
+            bindingClass.textV.text = bindingClass.textV.text.toString() + "6"
+        }
+        bindingClass.b7.setOnClickListener {
+            bindingClass.textV.text = bindingClass.textV.text.toString() + "7"
+        }
+        bindingClass.b8.setOnClickListener {
+            bindingClass.textV.text = bindingClass.textV.text.toString() + "8"
+        }
+        bindingClass.b9.setOnClickListener {
+            bindingClass.textV.text = bindingClass.textV.text.toString() + "9"
+        }
+        bindingClass.bBracket1.setOnClickListener {
+            bindingClass.textV.text = bindingClass.textV.text.toString() + "("
+        }
+        bindingClass.bBracket2.setOnClickListener {
+            bindingClass.textV.text = bindingClass.textV.text.toString() + ")"
+        }
+        bindingClass.bPlus.setOnClickListener {
+            bindingClass.textV.text = bindingClass.textV.text.toString() + "+"
+        }
+        bindingClass.bMinus.setOnClickListener {
+            bindingClass.textV.text = bindingClass.textV.text.toString() + "-"
+        }
+        bindingClass.bMultiplication.setOnClickListener {
+            bindingClass.textV.text = bindingClass.textV.text.toString() + "*"
+        }
+        bindingClass.bDivision.setOnClickListener {
+            bindingClass.textV.text = bindingClass.textV.text.toString() + "/"
+        }
+        bindingClass.bDel.setOnClickListener {
+            bindingClass.textV.text = bindingClass.textV.text.dropLast(1)
+        }
+        bindingClass.bAc.setOnClickListener {
+            bindingClass.textV.text = ""
+        }
+
+        bindingClass.bResult.setOnClickListener {
             bindingClass.tvResult.text = ""
-            var strMain = bindingClass.edText1.text.toString()
+            var strMain = bindingClass.textV.text.toString()
             var str : String = ""
             var i = 0
 
