@@ -16,106 +16,211 @@ class MainActivity : AppCompatActivity() {
 
         bindingClass.b1.setOnClickListener {
             bindingClass.tvResult.text = ""
-            var str = bindingClass.edText1.text.toString()
-            var str1 : String = ""
-            var result = 0
-            var count = 0
+            var strMain = bindingClass.edText1.text.toString()
+            var str : String = ""
             var i = 0
 
-            while (i <str.length-1)
+            while (i<strMain.length)
             {
-                if(str[i]=='*')
+                if(strMain[i]=='(')
                 {
-                    str += "+"
-                    var start = Start(str,i)
-                    var end = End(str,i)
-                    str1 = str.substring(start+1, end)
-                    result = Multiplication(str1)
-                    str = str.replaceFirst(str1,result.toString())
-                    str = str.dropLast(1)
-                    i = 0
-                }
+                    if(startBracket(strMain,i) < endBracket(strMain,i))
+                    {
+                        i = startBracket(strMain,i)
+                        if(startBracket(strMain,i) < endBracket(strMain,i))
+                        {
+                            i = startBracket(strMain,i)
+                            if(startBracket(strMain,i) < endBracket(strMain,i))
+                            {
+                                i = startBracket(strMain,i)
+                                if(startBracket(strMain,i) < endBracket(strMain,i))
+                                {
+                                    i = startBracket(strMain,i)
+                                    if(startBracket(strMain,i) < endBracket(strMain,i))
+                                    {
+                                        i = startBracket(strMain,i)
+                                        if(startBracket(strMain,i) < endBracket(strMain,i))
+                                        {
+                                            i = startBracket(strMain,i)
+                                            if(startBracket(strMain,i) < endBracket(strMain,i))
+                                            {
+                                                i = startBracket(strMain,i)
+                                                if(startBracket(strMain,i) < endBracket(strMain,i))
+                                                {
+                                                    i = startBracket(strMain,i)
 
-                if(str[i]=='/')
-                {
-                    str += "+"
-                    var start = Start(str,i)
-                    var end = End(str,i)
-                    str1 = str.substring(start+1, end)
-                    result = Division(str1)
-                    str = str.replaceFirst(str1,result.toString())
-                    str = str.dropLast(1)
-                    i = 0
+                                                }
+                                                else
+                                                {
+                                                    str = strMain.substring(i+1,endBracket(strMain,i))
+                                                    strMain = strMain.replaceFirst('('+str+')',Logic(str).toString())
+                                                    i = 0
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                str = strMain.substring(i+1,endBracket(strMain,i))
+                                                strMain = strMain.replaceFirst('('+str+')',Logic(str).toString())
+                                                i = 0
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            str = strMain.substring(i+1,endBracket(strMain,i))
+                                            strMain = strMain.replaceFirst('('+str+')',Logic(str).toString())
+                                            i = 0
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        str = strMain.substring(i+1,endBracket(strMain,i))
+                                        strMain = strMain.replaceFirst('('+str+')',Logic(str).toString())
+                                        i = 0
+                                    }
+
+                                }
+                                else
+                                {
+                                    str = strMain.substring(i+1,endBracket(strMain,i))
+                                    strMain = strMain.replaceFirst('('+str+')',Logic(str).toString())
+                                    i = 0
+                                }
+
+                            }
+                            else
+                            {
+                                str = strMain.substring(i+1,endBracket(strMain,i))
+                                strMain = strMain.replaceFirst('('+str+')',Logic(str).toString())
+                                i = 0
+                            }
+                        }
+                        else
+                        {
+                            str = strMain.substring(i+1,endBracket(strMain,i))
+                            strMain = strMain.replaceFirst('('+str+')',Logic(str).toString())
+                            i = 0
+                        }
+                    }
+                    else
+                    {
+                        str = strMain.substring(i+1,endBracket(strMain,i))
+                        strMain = strMain.replaceFirst('('+str+')',Logic(str).toString())
+                        i = 0
+                    }
                 }
 
                 i++
             }
 
-            i = 0
-            result = 0
-
-            while (i <str.length-1)
-            {
-                if(str[i]=='+')
-                {
-                    if(count == 0)
-                    {
-                        str += "+"
-                        var end = End(str,i)
-                        str1 = str.substring(0,end)
-                        result += Sum(str1)
-                        str = str.dropLast(1)
-                    }
-                    if(count != 0)
-                    {
-
-                        str += "+"
-                        var start = Start(str,i+1)
-                        var end = End(str,i)
-                        str1 = str.substring(start, end)
-                        result += Summ(str1)
-                        str = str.dropLast(1)
-                    }
-                    count++
-                }
-
-                if(str[i]=='-')
-                {
-                    if(count == 0)
-                    {
-                        str += "+"
-                        var end = End(str,i)
-                        str1 = str.substring(0,end)
-                        result += Minus(str1)
-                        str = str.dropLast(1)
-                    }
-                    if(count != 0)
-                    {
-                        str += "+"
-                        var start = Start(str,i+1)
-                        var end = End(str,i)
-                        str1 = str.substring(start, end)
-                        result += Minuss(str1)
-                        str = str.dropLast(1)
-                    }
-                    count++
-                }
-
-                i++
-            }
-
-            if(count == 0)
-            {
-                result = str.toInt()
-            }
+            var result = Logic(strMain)
 
             if (bindingClass.tvResult.text != "Ошибка")
             {
                 bindingClass.tvResult.text = "Результат: $result"
             }
-
         }
 
+    }
+
+    fun Logic(strTransmitted: String):Int
+    {
+        var str = strTransmitted
+        var str1 : String = ""
+        var result = 0
+        var count = 0
+        var i = 0
+
+        while (i <str.length-1)
+        {
+            if(str[i]=='*')
+            {
+                str += "+"
+                var start = Start(str,i)
+                var end = End(str,i)
+                str1 = str.substring(start+1, end)
+                result = Multiplication(str1)
+                str = str.replaceFirst(str1,result.toString())
+                str = str.dropLast(1)
+                i = 0
+            }
+
+            if(str[i]=='/')
+            {
+                str += "+"
+                var start = Start(str,i)
+                var end = End(str,i)
+                str1 = str.substring(start+1, end)
+                result = Division(str1)
+                str = str.replaceFirst(str1,result.toString())
+                str = str.dropLast(1)
+                i = 0
+            }
+
+            i++
+        }
+
+        i = 0
+        result = 0
+
+        while (i <str.length-1)
+        {
+            if(str[i]=='+')
+            {
+                if(count == 0)
+                {
+                    str += "+"
+                    var end = End(str,i)
+                    str1 = str.substring(0,end)
+                    result += Sum(str1)
+                    str = str.dropLast(1)
+                }
+                if(count != 0)
+                {
+
+                    str += "+"
+                    var start = Start(str,i+1)
+                    var end = End(str,i)
+                    str1 = str.substring(start, end)
+                    result += Summ(str1)
+                    str = str.dropLast(1)
+                }
+                count++
+            }
+
+            if(str[i]=='-')
+            {
+                if(count == 0)
+                {
+                    str += "+"
+                    var end = End(str,i)
+                    str1 = str.substring(0,end)
+                    result += Minus(str1)
+                    str = str.dropLast(1)
+                }
+                if(count != 0)
+                {
+                    str += "+"
+                    var start = Start(str,i+1)
+                    var end = End(str,i)
+                    str1 = str.substring(start, end)
+                    result += Minuss(str1)
+                    str = str.dropLast(1)
+                }
+                count++
+            }
+
+            i++
+        }
+
+        if(count == 0)
+        {
+            result = str.toInt()
+        }
+
+        return result
     }
 
     fun Sum(str1: String): Int
@@ -188,6 +293,17 @@ class MainActivity : AppCompatActivity() {
     {
         var end = min(min(str.indexOf('+',i+1).takeIf { it != -1 } ?: 1000,str.indexOf('-',i+1).takeIf { it != -1 } ?: 1000),min(str.indexOf('*',i+1).takeIf { it != -1 } ?: 1000,str.indexOf('/',i+1).takeIf { it != -1 } ?: 1000))
 
+        return end
+    }
+
+    fun startBracket(strMain: String, i:Int): Int
+    {
+        var start = strMain.indexOf('(',i+1).takeIf { it != -1 } ?: 1000
+        return start
+    }
+    fun endBracket(strMain: String, i:Int): Int
+    {
+        var end = strMain.indexOf(')',i+1)
         return end
     }
 
