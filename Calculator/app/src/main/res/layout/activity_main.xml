@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="224dp"
         android:gravity="center"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -22,9 +22,9 @@
     <Button
         android:id="@+id/bResult"
         android:layout_width="85dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="52dp"
         android:text="="
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -32,7 +32,7 @@
     <Button
         android:id="@+id/bBracket2"
         android:layout_width="85dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text=")"
         app:layout_constraintEnd_toStartOf="@+id/bResult"
         app:layout_constraintTop_toTopOf="@+id/bResult" />
@@ -40,7 +40,7 @@
     <Button
         android:id="@+id/b0"
         android:layout_width="85dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="0"
         app:layout_constraintEnd_toStartOf="@+id/bBracket2"
         app:layout_constraintTop_toTopOf="@+id/bBracket2" />
@@ -48,8 +48,7 @@
     <Button
         android:id="@+id/bBracket1"
         android:layout_width="85dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_height="60dp"
         android:text="("
         app:layout_constraintEnd_toStartOf="@+id/b0"
         app:layout_constraintHorizontal_bias="1.0"
@@ -59,7 +58,7 @@
     <Button
         android:id="@+id/bPlus"
         android:layout_width="85dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="+"
         app:layout_constraintBottom_toTopOf="@+id/bResult"
         app:layout_constraintEnd_toEndOf="@+id/bResult" />
@@ -67,7 +66,7 @@
     <Button
         android:id="@+id/b3"
         android:layout_width="85dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="3"
         app:layout_constraintEnd_toStartOf="@+id/bPlus"
         app:layout_constraintTop_toTopOf="@+id/bPlus" />
@@ -75,7 +74,7 @@
     <Button
         android:id="@+id/b2"
         android:layout_width="85dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="2"
         app:layout_constraintEnd_toStartOf="@+id/b3"
         app:layout_constraintTop_toTopOf="@+id/b3" />
@@ -83,7 +82,7 @@
     <Button
         android:id="@+id/b1"
         android:layout_width="85dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="1"
         app:layout_constraintEnd_toStartOf="@+id/b2"
         app:layout_constraintStart_toStartOf="@+id/bBracket1"
@@ -92,7 +91,7 @@
     <Button
         android:id="@+id/bMinus"
         android:layout_width="85dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="-"
         app:layout_constraintBottom_toTopOf="@+id/bPlus"
         app:layout_constraintEnd_toEndOf="@+id/bPlus" />
@@ -100,7 +99,7 @@
     <Button
         android:id="@+id/b6"
         android:layout_width="85dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="6"
         app:layout_constraintEnd_toStartOf="@+id/bMinus"
         app:layout_constraintTop_toTopOf="@+id/bMinus" />
@@ -108,7 +107,7 @@
     <Button
         android:id="@+id/b5"
         android:layout_width="85dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="5"
         app:layout_constraintEnd_toStartOf="@+id/b6"
         app:layout_constraintTop_toTopOf="@+id/b6" />
@@ -116,7 +115,7 @@
     <Button
         android:id="@+id/b4"
         android:layout_width="85dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="4"
         app:layout_constraintEnd_toStartOf="@+id/b5"
         app:layout_constraintStart_toStartOf="@+id/b1"
@@ -125,7 +124,7 @@
     <Button
         android:id="@+id/bMultiplication"
         android:layout_width="85dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="*"
         app:layout_constraintBottom_toTopOf="@+id/bMinus"
         app:layout_constraintEnd_toEndOf="@+id/bMinus" />
@@ -133,7 +132,7 @@
     <Button
         android:id="@+id/b9"
         android:layout_width="85dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="9"
         app:layout_constraintEnd_toStartOf="@+id/bMultiplication"
         app:layout_constraintTop_toTopOf="@+id/bMultiplication" />
@@ -141,7 +140,7 @@
     <Button
         android:id="@+id/b8"
         android:layout_width="85dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="8"
         app:layout_constraintEnd_toStartOf="@+id/b9"
         app:layout_constraintTop_toTopOf="@+id/b9" />
@@ -149,7 +148,7 @@
     <Button
         android:id="@+id/b7"
         android:layout_width="85dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="7"
         app:layout_constraintEnd_toStartOf="@+id/b8"
         app:layout_constraintHorizontal_bias="1.0"
@@ -159,7 +158,7 @@
     <Button
         android:id="@+id/bDivision"
         android:layout_width="85dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="/"
         app:layout_constraintBottom_toTopOf="@+id/bMultiplication"
         app:layout_constraintEnd_toEndOf="@+id/bMultiplication" />
@@ -167,7 +166,7 @@
     <Button
         android:id="@+id/bDel"
         android:layout_width="85dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="del"
         app:layout_constraintEnd_toStartOf="@+id/bComma"
         app:layout_constraintTop_toTopOf="@+id/bComma" />
@@ -175,7 +174,7 @@
     <Button
         android:id="@+id/bComma"
         android:layout_width="85dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text=","
         app:layout_constraintEnd_toStartOf="@+id/bDivision"
         app:layout_constraintTop_toTopOf="@+id/bDivision" />
@@ -183,7 +182,8 @@
     <Button
         android:id="@+id/bAc"
         android:layout_width="85dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
+        android:insetRight="1dp"
         android:text="AC"
         app:layout_constraintEnd_toStartOf="@+id/bDel"
         app:layout_constraintStart_toStartOf="@+id/b7"
@@ -195,7 +195,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="188dp"
         android:hint="0"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/bDivision"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/bAc"
