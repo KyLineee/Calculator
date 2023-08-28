@@ -68,6 +68,9 @@ class MainActivity : AppCompatActivity() {
         bindingClass.bAc.setOnClickListener {
             bindingClass.textV.text = ""
         }
+        bindingClass.bComma.setOnClickListener {
+            bindingClass.textV.text = bindingClass.textV.text.toString() + "."
+        }
 
         bindingClass.bResult.setOnClickListener {
             bindingClass.tvResult.text = ""
@@ -178,17 +181,24 @@ class MainActivity : AppCompatActivity() {
 
             if (bindingClass.tvResult.text != "Ошибка")
             {
-                bindingClass.tvResult.text = "Результат: $result"
+                if(Math.floor(result) == result)
+                {
+                    bindingClass.tvResult.text = "Результат: ${result.toInt()}"
+                }
+                else
+                {
+                    bindingClass.tvResult.text = "Результат: $result"
+                }
             }
         }
 
     }
 
-    fun Logic(strTransmitted: String):Int
+    fun Logic(strTransmitted: String):Double
     {
         var str = strTransmitted
         var str1 : String = ""
-        var result = 0
+        var result = 0.0
         var count = 0
         var i = 0
 
@@ -222,7 +232,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         i = 0
-        result = 0
+        result = 0.0
 
         while (i <str.length-1)
         {
@@ -276,62 +286,62 @@ class MainActivity : AppCompatActivity() {
 
         if(count == 0)
         {
-            result = str.toInt()
+            result = str.toDouble()
         }
 
         return result
     }
 
-    fun Sum(str1: String): Int
+    fun Sum(str1: String): Double
     {
-        var sum = 0
+        var sum = 0.0
         val arr = str1.split('+')
         for (number in arr) {
-            sum += number.toInt()
+            sum += number.toDouble()
         }
 
         return sum
     }
 
-    fun Summ(str1: String): Int
+    fun Summ(str1: String): Double
     {
-        var sum = str1.toInt()
+        var sum = str1.toDouble()
 
         return sum
     }
 
-    fun Minus(str1: String): Int
+    fun Minus(str1: String): Double
     {
-        var sum = 0
+        var sum = 0.0
         val arr = str1.split('-')
-        sum = arr[0].toInt() - arr[1].toInt()
+        sum = arr[0].toDouble() - arr[1].toDouble()
 
         return sum
     }
 
-    fun Minuss(str1: String): Int
+    fun Minuss(str1: String): Double
     {
-        var sum = str1.toInt()
+        var sum = str1.toDouble()
 
         return sum
     }
 
-    fun Multiplication(str1: String): Int
+    fun Multiplication(str1: String): Double
     {
-        var sum = 0
+        var sum = 0.0
         val arr = str1.split('*')
-        sum = arr[0].toInt() * arr[1].toInt()
+        sum = arr[0].toDouble() * arr[1].toDouble()
 
         return sum
     }
 
-    fun Division(str1: String): Int
+    fun Division(str1: String): Double
     {
-        var sum = 0
+        var sum = 0.0
         val arr = str1.split('/')
         try
         {
-            sum = arr[0].toInt() / arr[1].toInt()
+            sum = arr[0].toDouble() / arr[1].toDouble()
         }
         catch (e: ArithmeticException)
         {
