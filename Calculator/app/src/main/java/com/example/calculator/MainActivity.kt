@@ -72,6 +72,10 @@ class MainActivity : AppCompatActivity() {
         bindingClass.bResult.setOnClickListener {
             bindingClass.tvResult.text = ""
             var strMain = bindingClass.textV.text.toString()
+            if(strMain=="")
+            {
+                strMain = "0"
+            }
             var str : String = ""
             var i = 0
 
