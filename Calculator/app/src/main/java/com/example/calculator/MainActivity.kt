@@ -8,6 +8,7 @@ import kotlin.math.min
 
 class MainActivity : AppCompatActivity() {
     lateinit var bindingClass : ActivityMainBinding
+    var err = false
 
     override fun onCreate(s: Bundle?) {
         super.onCreate(s)
@@ -73,11 +74,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         bindingClass.bResult.setOnClickListener {
+            err = false
             bindingClass.tvResult.text = ""
             var strMain = bindingClass.textV.text.toString()
             if(strMain=="")
             {
                 strMain = "0"
+            }
+            if(strMain == "+" || strMain == "-" || strMain == "/" || strMain == ".")
+            {
+                strMain = "0"
+                err = true
             }
             var str : String = ""
             var i = 0
@@ -179,7 +186,11 @@ class MainActivity : AppCompatActivity() {
 
             var result = Logic(strMain)
 
-            if (bindingClass.tvResult.text != "Ошибка")
+            if(err == true)
+            {
+                bindingClass.tvResult.text = "Ошибка"
+            }
+            else
             {
                 if(Math.floor(result) == result)
                 {
@@ -190,6 +201,7 @@ class MainActivity : AppCompatActivity() {
                     bindingClass.tvResult.text = "Результат: $result"
                 }
             }
+
         }
 
     }
@@ -339,13 +351,14 @@ class MainActivity : AppCompatActivity() {
     {
         var sum = 0.0
         val arr = str1.split('/')
-        try
+
+        if(arr[1].toDouble() == 0.0)
+        {
+            err = true
+        }
+        else
         {
             sum = arr[0].toDouble() / arr[1].toDouble()
-        }
-        catch (e: ArithmeticException)
-        {
-            bindingClass.tvResult.text = "Ошибка"
         }
 
         return sum
