@@ -1,12 +1,18 @@
 package com.example.calculator
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.calculator.databinding.ActivityMainBinding
 import kotlin.math.max
 import kotlin.math.min
 
 class MainActivity : AppCompatActivity() {
+    private var launcherSetting: ActivityResultLauncher<Intent>? = null
     lateinit var bindingClass : ActivityMainBinding
     var err = false
 
@@ -14,6 +20,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(s)
         bindingClass = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bindingClass.root)
+
+        launcherSetting = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            result: ActivityResult ->
+
+            if(result.resultCode == RESULT_OK)
+            {
+                var textSize = result.data?.getFloatExtra("key1",22f)
+                if(textSize != null)
+                {
+                    bindingClass.textV.textSize = textSize
+                    bindingClass.tvResult.text = textSize.toString()
+                    bindingClass.textV.text = textSize.toString()
+                }
+            }
+        }
 
         bindingClass.b0.setOnClickListener {
             bindingClass.textV.text = bindingClass.textV.text.toString() + "0"
@@ -204,6 +225,11 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    fun onClickSetting(view: View)
+    {
+        launcherSetting?.launch(Intent(this,Settings::class.java))
     }
 
     fun Logic(strTransmitted: String):Double
