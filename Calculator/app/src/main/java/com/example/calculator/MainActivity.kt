@@ -1,5 +1,6 @@
 package com.example.calculator
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,23 +16,27 @@ class MainActivity : AppCompatActivity() {
     private var launcherSetting: ActivityResultLauncher<Intent>? = null
     lateinit var bindingClass : ActivityMainBinding
     var err = false
+    var textVSize = 16f
+
 
     override fun onCreate(s: Bundle?) {
         super.onCreate(s)
         bindingClass = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bindingClass.root)
 
+        val sharedPref = getPreferences(Context.MODE_PRIVATE)
+        bindingClass.textV.textSize = sharedPref.getFloat("textVSize",16f)
+
         launcherSetting = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result: ActivityResult ->
 
             if(result.resultCode == RESULT_OK)
             {
-                var textSize = result.data?.getFloatExtra("key1",22f)
+                var textSize = result.data?.getFloatExtra("key1",16f)
                 if(textSize != null)
                 {
                     bindingClass.textV.textSize = textSize
-                    bindingClass.tvResult.text = textSize.toString()
-                    bindingClass.textV.text = textSize.toString()
+                    textVSize = textSize
                 }
             }
         }
@@ -225,6 +230,15 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val sharedPref = getPreferences(Context.MODE_PRIVATE)
+        with(sharedPref.edit()){
+            putFloat("textVSize",textVSize)
+            apply()
+        }
     }
 
     fun onClickSetting(view: View)
