@@ -2,12 +2,14 @@ package com.example.calculator
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.graphics.toColorInt
 import com.example.calculator.databinding.ActivityMainBinding
 import kotlin.math.max
 import kotlin.math.min
@@ -17,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var bindingClass : ActivityMainBinding
     var err = false
     var textVSize = 16f
+    var textVColor = Color.parseColor("#FFFFFFFF")
 
 
     override fun onCreate(s: Bundle?) {
@@ -26,17 +29,24 @@ class MainActivity : AppCompatActivity() {
 
         val sharedPref = getPreferences(Context.MODE_PRIVATE)
         bindingClass.textV.textSize = sharedPref.getFloat("textVSize",16f)
+        bindingClass.textV.setTextColor(sharedPref.getInt("textVColor",Color.parseColor("#FFFFFFFF")))
 
         launcherSetting = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result: ActivityResult ->
 
             if(result.resultCode == RESULT_OK)
             {
-                var textSize = result.data?.getFloatExtra("key1",16f)
+                var textSize = result.data?.getFloatExtra("keySize",16f)
+                var textColor = result.data?.getIntExtra("keyColor",Color.parseColor("#FFFFFFFF"))
                 if(textSize != null)
                 {
                     bindingClass.textV.textSize = textSize
                     textVSize = textSize
+                }
+                if(textColor != null)
+                {
+                    bindingClass.textV.setTextColor(textColor)
+                    textVColor = textColor
                 }
             }
         }
@@ -237,6 +247,7 @@ class MainActivity : AppCompatActivity() {
         val sharedPref = getPreferences(Context.MODE_PRIVATE)
         with(sharedPref.edit()){
             putFloat("textVSize",textVSize)
+            putInt("textVColor",textVColor)
             apply()
         }
     }

@@ -62,12 +62,32 @@
       android:id="@+id/textVSize1"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="12dp"
+      android:layout_marginBottom="8dp"
       android:text="Размер шрифта:"
       android:textSize="16sp"
       app:layout_constraintBottom_toTopOf="@+id/textVSize"
       app:layout_constraintEnd_toEndOf="@+id/seekBarSize"
       app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintStart_toStartOf="@+id/seekBarSize" />
+
+  <Spinner
+      android:id="@+id/spinnerColors"
+      android:layout_width="200dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="44dp"
+      app:layout_constraintStart_toEndOf="@+id/textVColor"
+      app:layout_constraintTop_toBottomOf="@+id/seekBarSize" />
+
+  <TextView
+      android:id="@+id/textVColor"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="44dp"
+      android:text="Цвет текста:"
+      android:textSize="16sp"
+      app:layout_constraintEnd_toEndOf="@+id/textVSize1"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toStartOf="@+id/textVSize1"
+      app:layout_constraintTop_toBottomOf="@+id/seekBarSize" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
