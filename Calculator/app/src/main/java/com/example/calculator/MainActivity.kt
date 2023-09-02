@@ -29,7 +29,8 @@ class MainActivity : AppCompatActivity() {
 
         val sharedPref = getPreferences(Context.MODE_PRIVATE)
         bindingClass.textV.textSize = sharedPref.getFloat("textVSize",16f)
-        bindingClass.textV.setTextColor(sharedPref.getInt("textVColor",Color.parseColor("#FFFFFFFF")))
+        textVColor = sharedPref.getInt("textVColor",Color.parseColor("#FFFFFFFF"))
+        bindingClass.textV.setTextColor(textVColor)
 
         launcherSetting = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result: ActivityResult ->
@@ -113,15 +114,25 @@ class MainActivity : AppCompatActivity() {
             err = false
             bindingClass.tvResult.text = ""
             var strMain = bindingClass.textV.text.toString()
+
             if(strMain=="")
             {
                 strMain = "0"
             }
-            if(strMain == "+" || strMain == "-" || strMain == "/" || strMain == ".")
+            if((strMain == "+" || strMain == "-" || strMain == "/" || strMain == "*" || strMain == ".") || Regex("[-+/*]{2,}").containsMatchIn(strMain))
             {
                 strMain = "0"
                 err = true
             }
+            if("+-/*".contains(strMain[0]))
+            {
+                strMain = strMain.drop(1)
+            }
+            if("+-/*".contains(strMain[strMain.lastIndex]))
+            {
+                strMain = strMain.dropLast(1)
+            }
+
             var str : String = ""
             var i = 0
 
