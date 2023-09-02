@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Калькулятор</string>
+    <string name="bSave">Сохранено!</string>
+    <string name="fontSize">"Размер шрифта: "</string>
+    <string name="textColor">"Цвет текста: "</string>
+    <string name="result">"Результат: "</string>
+</resources>

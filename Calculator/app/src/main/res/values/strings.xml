@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Calculator</string>
+    <string name="bSave">Saved!</string>
+    <string name="fontSize">"Font size: "</string>
+    <string name="textColor">"Text color: "</string>
+    <string name="result">"Result: "</string>
 </resources>

@@ -10,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import android.widget.Spinner
+import android.widget.Toast
 import com.example.calculator.databinding.ActivitySettingsBinding
 
 class Settings : AppCompatActivity() {
@@ -162,6 +163,8 @@ class Settings : AppCompatActivity() {
             putFloat("textVSize",textSize)
             apply()
         }
+
+        Toast.makeText(this, R.string.bSave, Toast.LENGTH_SHORT).show()
 
         finish()
     }

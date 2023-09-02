@@ -241,11 +241,11 @@ class MainActivity : AppCompatActivity() {
             {
                 if(Math.floor(result) == result)
                 {
-                    bindingClass.tvResult.text = "Результат: ${result.toInt()}"
+                    bindingClass.tvResult.text = getString(R.string.result) + result.toInt().toString()
                 }
                 else
                 {
-                    bindingClass.tvResult.text = "Результат: $result"
+                    bindingClass.tvResult.text = getString(R.string.result) + result.toString()
                 }
             }
 
