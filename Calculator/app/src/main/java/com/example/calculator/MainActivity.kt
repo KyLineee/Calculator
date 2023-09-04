@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity() {
             {
                 strMain = "0"
             }
-            if((strMain == "+" || strMain == "-" || strMain == "/" || strMain == "*" || strMain == ".") || Regex("[-+/*]{2,}").containsMatchIn(strMain))
+            if((strMain == "+" || strMain == "-" || strMain == "/" || strMain == "*" || strMain == ".") || Regex("[-+/*.]{2,}").containsMatchIn(strMain))
             {
                 strMain = "0"
                 err = true
