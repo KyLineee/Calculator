@@ -26,9 +26,9 @@
       style="@style/Widget.AppCompat.SeekBar.Discrete"
       android:layout_width="242dp"
       android:layout_height="31dp"
-      android:layout_marginStart="85dp"
-      android:layout_marginTop="164dp"
-      android:layout_marginEnd="85dp"
+      android:layout_marginStart="46dp"
+      android:layout_marginTop="168dp"
+      android:layout_marginEnd="123dp"
       android:max="8"
       android:progress="3"
       app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +60,7 @@
 
   <TextView
       android:id="@+id/textVSize1"
-      android:layout_width="wrap_content"
+      android:layout_width="180dp"
       android:layout_height="wrap_content"
       android:layout_marginBottom="8dp"
       android:text="@string/fontSize"
@@ -72,15 +72,14 @@
 
   <Spinner
       android:id="@+id/spinnerColors"
-      android:layout_width="200dp"
+      android:layout_width="160dp"
       android:layout_height="wrap_content"
-      android:layout_marginTop="44dp"
       app:layout_constraintStart_toEndOf="@+id/textVColor"
-      app:layout_constraintTop_toBottomOf="@+id/seekBarSize" />
+      app:layout_constraintTop_toTopOf="@+id/textVColor" />
 
   <TextView
       android:id="@+id/textVColor"
-      android:layout_width="wrap_content"
+      android:layout_width="180dp"
       android:layout_height="wrap_content"
       android:layout_marginTop="44dp"
       android:text="@string/textColor"
@@ -89,5 +88,24 @@
       app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintStart_toStartOf="@+id/textVSize1"
       app:layout_constraintTop_toBottomOf="@+id/seekBarSize" />
+
+  <TextView
+      android:id="@+id/textView"
+      android:layout_width="180dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="40dp"
+      android:text="@string/resultTextColor"
+      android:textSize="16sp"
+      app:layout_constraintEnd_toEndOf="@+id/textVColor"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toStartOf="@+id/textVColor"
+      app:layout_constraintTop_toBottomOf="@+id/textVColor" />
+
+  <Spinner
+      android:id="@+id/spinnerColorsResult"
+      android:layout_width="160dp"
+      android:layout_height="wrap_content"
+      app:layout_constraintStart_toEndOf="@+id/textView"
+      app:layout_constraintTop_toTopOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

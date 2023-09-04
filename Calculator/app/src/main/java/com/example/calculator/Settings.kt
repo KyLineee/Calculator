@@ -18,6 +18,8 @@ class Settings : AppCompatActivity() {
     var textSize = 16f
     var textColor = Color.parseColor("#FFFFFFFF")
     var textColorId = 0
+    var textResultColor = Color.parseColor("#FFFFFFFF")
+    var textResultColorId = 0
     var progres = 0
 
     override fun onCreate(s: Bundle?) {
@@ -29,6 +31,7 @@ class Settings : AppCompatActivity() {
         progres = sharedPref.getInt("seekBarProgress", 0)
         textSize = sharedPref.getFloat("textVSize",16f)
         textColorId = sharedPref.getInt("textVColorId",0)
+        textResultColorId = sharedPref.getInt("textResultVColorId",0)
 
         bindingClass.textVSize.text = textSize.toString()
         seek.progress = progres
@@ -141,6 +144,58 @@ class Settings : AppCompatActivity() {
             }
         }
 
+        val spinnerResult: Spinner = bindingClass.spinnerColorsResult
+        val adapterResult = ArrayAdapter(this,android.R.layout.simple_spinner_item, colors)
+        adapterResult.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerResult.adapter = adapterResult
+
+        spinnerResult.setSelection(textResultColorId)
+
+        spinnerResult.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                val color = parent.getItemAtPosition(position).toString()
+                when(color) {
+                    "Белый" -> {
+                        textResultColor = Color.parseColor("#FFFFFFFF")
+                        textResultColorId = 0
+                    }
+                    "Черный" -> {
+                        textResultColor = Color.parseColor("#FF000000")
+                        textResultColorId = 1
+                    }
+                    "Красный" -> {
+                        textResultColor = Color.parseColor("#B00020")
+                        textResultColorId = 2
+                    }
+                    "Оранжевый" -> {
+                        textResultColor = Color.parseColor("#FFFF8800")
+                        textResultColorId = 3
+                    }
+                    "Желтый" -> {
+                        textResultColor = Color.parseColor("#FFFFBB33")
+                        textResultColorId = 4
+                    }
+                    "Зеленый" -> {
+                        textResultColor = Color.parseColor("#FF669900")
+                        textResultColorId = 5
+                    }
+                    "Голубой" -> {
+                        textResultColor = Color.parseColor("#219BCC")
+                        textResultColorId = 6
+                    }
+                    "Синий" -> {
+                        textResultColor = Color.parseColor("#3700B3")
+                        textResultColorId = 7
+                    }
+                    "Фиолетовый" -> {
+                        textResultColor = Color.parseColor("#6200EE")
+                        textResultColorId = 8
+                    }
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {
+            }
+        }
     }
 
     override fun onPause() {
@@ -154,12 +209,14 @@ class Settings : AppCompatActivity() {
         val i = Intent()
         i.putExtra("keySize",textSize)
         i.putExtra("keyColor",textColor)
+        i.putExtra("keyResultColor",textResultColor)
         setResult(RESULT_OK,i)
 
         val sharedPref = getPreferences(Context.MODE_PRIVATE)
         with(sharedPref.edit()){
             putInt("seekBarProgress", progres)
             putInt("textVColorId", textColorId)
+            putInt("textResultVColorId", textResultColorId)
             putFloat("textVSize",textSize)
             apply()
         }

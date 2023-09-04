@@ -4,4 +4,5 @@
     <string name="fontSize">"Размер шрифта: "</string>
     <string name="textColor">"Цвет текста: "</string>
     <string name="result">"Результат: "</string>
+    <string name="resultTextColor">"Цвет текста результата: "</string>
 </resources>

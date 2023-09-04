@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     var err = false
     var textVSize = 16f
     var textVColor = Color.parseColor("#FFFFFFFF")
+    var textResultVColor = Color.parseColor("#FFFFFFFF")
 
 
     override fun onCreate(s: Bundle?) {
@@ -30,7 +31,9 @@ class MainActivity : AppCompatActivity() {
         val sharedPref = getPreferences(Context.MODE_PRIVATE)
         bindingClass.textV.textSize = sharedPref.getFloat("textVSize",16f)
         textVColor = sharedPref.getInt("textVColor",Color.parseColor("#FFFFFFFF"))
+        textResultVColor = sharedPref.getInt("textResultVColor",Color.parseColor("#FFFFFFFF"))
         bindingClass.textV.setTextColor(textVColor)
+        bindingClass.tvResult.setTextColor(textResultVColor)
 
         launcherSetting = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result: ActivityResult ->
@@ -39,6 +42,7 @@ class MainActivity : AppCompatActivity() {
             {
                 var textSize = result.data?.getFloatExtra("keySize",16f)
                 var textColor = result.data?.getIntExtra("keyColor",Color.parseColor("#FFFFFFFF"))
+                var textResultColor = result.data?.getIntExtra("keyResultColor",Color.parseColor("#FFFFFFFF"))
                 if(textSize != null)
                 {
                     bindingClass.textV.textSize = textSize
@@ -48,6 +52,11 @@ class MainActivity : AppCompatActivity() {
                 {
                     bindingClass.textV.setTextColor(textColor)
                     textVColor = textColor
+                }
+                if(textResultColor != null)
+                {
+                    bindingClass.tvResult.setTextColor(textResultColor)
+                    textResultVColor = textResultColor
                 }
             }
         }
@@ -259,6 +268,7 @@ class MainActivity : AppCompatActivity() {
         with(sharedPref.edit()){
             putFloat("textVSize",textVSize)
             putInt("textVColor",textVColor)
+            putInt("textResultVColor",textResultVColor)
             apply()
         }
     }

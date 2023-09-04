@@ -4,4 +4,5 @@
     <string name="fontSize">"Font size: "</string>
     <string name="textColor">"Text color: "</string>
     <string name="result">"Result: "</string>
+    <string name="resultTextColor">"Result text color: "</string>
 </resources>
