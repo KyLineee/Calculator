@@ -9,6 +9,7 @@ import android.view.View
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.graphics.toColorInt
 import com.example.calculator.databinding.ActivityMainBinding
 import kotlin.math.max
@@ -21,7 +22,6 @@ class MainActivity : AppCompatActivity() {
     var textVSize = 16f
     var textVColor = Color.parseColor("#FFFFFFFF")
     var textResultVColor = Color.parseColor("#FFFFFFFF")
-
 
     override fun onCreate(s: Bundle?) {
         super.onCreate(s)
