@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         val sharedPref = getPreferences(Context.MODE_PRIVATE)
         bindingClass.textV.textSize = sharedPref.getFloat("textVSize",16f)
+        bindingClass.tvResult.textSize = sharedPref.getFloat("textVSize",16f)
         textVColor = sharedPref.getInt("textVColor",Color.parseColor("#FFFFFFFF"))
         textResultVColor = sharedPref.getInt("textResultVColor",Color.parseColor("#FFFFFFFF"))
         bindingClass.textV.setTextColor(textVColor)
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity() {
                 if(textSize != null)
                 {
                     bindingClass.textV.textSize = textSize
+                    bindingClass.tvResult.textSize = textSize
                     textVSize = textSize
                 }
                 if(textColor != null)
